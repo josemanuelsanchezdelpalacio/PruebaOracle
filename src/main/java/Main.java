@@ -1,4 +1,7 @@
 import Conexion.ConexionOracle;
+import Conexion.PoolConexiones;
+import code.Insertar;
+import code.Listar;
 import libs.Leer;
 
 import java.sql.Connection;
@@ -14,6 +17,8 @@ public class Main {
         do {
             System.out.println("0. Salir");
             System.out.println("1. Conectar a la base de datos");
+            System.out.println("2. Insertar alumno");
+            System.out.println("3. Listar nota media alumnos");
 
             opcion = Leer.pedirEntero("Introduce una opción: ");
 
@@ -22,14 +27,17 @@ public class Main {
                     salir = true;
                     break;
                 case 1:
-                    String nombreBD = Leer.pedirCadena("Introduce el nombre de la base de datos: ");
-                    conexion = ConexionOracle.conectar(nombreBD);
+                    //String nombreBD = Leer.pedirCadena("Introduce el nombre de la base de datos: ");
                     try {
-                        conexion.close();
+                        PoolConexiones.conectar();
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                     break;
+                case 2:
+                    Insertar.insertarAlumno();
+                case 3:
+                    Listar.notasMediasAlumnos();
                 default:
                     System.out.println("La opción seleccionada no existe");
             }

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class ConexionOracle {
 
     private static final String URL = "jdbc:oracle:thin:@//localhost:1523";
-    private static final String USUARIO = "admin";
+    private static final String USUARIO = "root";
     private static final String CLAVE = "admin";
 
     public static Connection conectar(String nombreBD) {
